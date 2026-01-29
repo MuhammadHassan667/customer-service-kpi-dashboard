@@ -101,6 +101,14 @@ Key dimensions:
 - Business-focused analytics thinking
 
 ---
+## 📸 Dashboard Preview
+
+### Executive Overview
+![Executive Overview](executive_overview)
+
+### SLA & Performance
+![SLA & Performance](sla_performance)
+
 
 ## 👤 Author
 
