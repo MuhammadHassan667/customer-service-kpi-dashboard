@@ -89,6 +89,49 @@ GROUP BY 1
 ORDER BY 1;
 
 
+-- Performance by Channel (SLA + volumes)
+CREATE OR REPLACE VIEW bi.v_perf_by_channel AS
+SELECT
+  ticket_channel,
+  COUNT(*) AS total_tickets,
+  ROUND(AVG(first_response_minutes)::numeric, 2) AS avg_first_response_min,
+  ROUND(AVG(resolution_minutes)::numeric, 2) AS avg_resolution_min,
+  ROUND(AVG(customer_satisfaction_rating)::numeric, 2) AS avg_csat,
+  ROUND(
+    100.0 * COUNT(*) FILTER (WHERE first_response_minutes IS NOT NULL AND first_response_minutes <= 60)
+    / NULLIF(COUNT(*), 0),
+    2
+  ) AS first_response_sla_pct,
+  ROUND(
+    100.0 * COUNT(*) FILTER (WHERE resolution_minutes IS NOT NULL AND resolution_minutes <= 1440)
+    / NULLIF(COUNT(*), 0),
+    2
+  ) AS resolution_sla_pct
+FROM bi.fact_customer_tickets
+GROUP BY ticket_channel;
+
+
+-- Performance by Priority (SLA + volumes)
+CREATE OR REPLACE VIEW bi.v_perf_by_priority AS
+SELECT
+  ticket_priority,
+  COUNT(*) AS total_tickets,
+  ROUND(AVG(first_response_minutes)::numeric, 2) AS avg_first_response_min,
+  ROUND(AVG(resolution_minutes)::numeric, 2) AS avg_resolution_min,
+  ROUND(AVG(customer_satisfaction_rating)::numeric, 2) AS avg_csat,
+  ROUND(
+    100.0 * COUNT(*) FILTER (WHERE first_response_minutes IS NOT NULL AND first_response_minutes <= 60)
+    / NULLIF(COUNT(*), 0),
+    2
+  ) AS first_response_sla_pct,
+  ROUND(
+    100.0 * COUNT(*) FILTER (WHERE resolution_minutes IS NOT NULL AND resolution_minutes <= 1440)
+    / NULLIF(COUNT(*), 0),
+    2
+  ) AS resolution_sla_pct
+FROM bi.fact_customer_tickets
+GROUP BY ticket_priority;
+
 
 
 
