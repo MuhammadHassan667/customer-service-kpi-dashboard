@@ -104,7 +104,7 @@ Key dimensions:
 ## 📸 Dashboard Preview
 
 ### Executive Overview
-![Executive Overview](executive_overview)
+![Executive Overview]("executive_overview.png")
 
 ### SLA & Performance
 ![SLA & Performance](sla_performance)
