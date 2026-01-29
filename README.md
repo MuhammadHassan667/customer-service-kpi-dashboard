@@ -104,10 +104,10 @@ Key dimensions:
 ## 📸 Dashboard Preview
 
 ### Executive Overview
-![Executive Overview]("executive_overview.png")
+![Executive Overview](["executive_overview.png"](https://github.com/MuhammadHassan667/customer-service-kpi-dashboard/blob/main/screenshots/executive_overview.png))
 
 ### SLA & Performance
-![SLA & Performance](sla_performance)
+![SLA & Performance]([sla_performance](https://github.com/MuhammadHassan667/customer-service-kpi-dashboard/blob/main/screenshots/sla_performance.png))
 
 
 ## 👤 Author
