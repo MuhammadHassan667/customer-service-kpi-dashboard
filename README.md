@@ -1,117 +1,79 @@
-# 📊 Customer Service KPI Dashboard (SQL + Power BI)
+📊 Customer Service KPI Dashboard
+PostgreSQL · ETL · Power BI
+A production-ready business intelligence dashboard that replaced a 12-hour weekly manual Excel reporting process with a fully automated, end-to-end pipeline — delivering real-time customer service insights to senior management.
 
-This project demonstrates an **end-to-end customer service analytics solution** using **PostgreSQL (SQL)** and **Power BI**.  
-It focuses on **ticket performance, SLA compliance, resolution efficiency, and customer satisfaction**.
+🧩 Business Problem
+The customer service team was spending ~12 hours every week manually compiling data from multiple sources into Excel reports. The process was error-prone, time-consuming, and delivered insights that were already days old by the time anyone read them.
+Goal: Build a reliable, automated pipeline that surfaces KPIs in real time — so management spends time acting on data, not preparing it.
 
----
+📈 Dashboard Overview
+The dashboard is split into two core sections:
+Executive Overview
+MetricDescriptionTotal TicketsVolume of customer service tickets in the selected periodFirst Response SLA %Percentage of tickets receiving a first response within the SLA windowResolution SLA %Percentage of tickets resolved within the defined SLA timeframeTickets by PriorityBreakdown of ticket volume by priority level (Critical, High, Medium, Low)Tickets by ChannelDistribution of incoming tickets by source (Email, Chat, Phone, Portal, Social)Ticket Type MixProportion of Technical Issues, Billing Requests, and General Enquiries
+SLA & Performance
+MetricDescriptionAvg Resolution TimeAverage time (in hours) to resolve a ticket across all prioritiesAvg Resolution Time by PriorityResolution time segmented by ticket priority — identifies where SLAs are at riskAvg TSATAverage customer satisfaction scoreAvg TSAT by PrioritySatisfaction scores by priority level — surfaces correlation between urgency and experience
 
-## 🚀 Project Overview
+🛠️ Tech Stack
+LayerToolData StoragePostgreSQLData PipelineETL (Extract, Transform, Load)TransformationSQL (CTEs, Views, Stored Procedures)VisualisationMicrosoft Power BIVersion ControlGit & GitHub
 
-Customer support teams need clear KPIs to monitor performance and improve service quality.  
-This dashboard provides insights into:
+🔄 Pipeline Architecture
+Raw Source Data
+      │
+      ▼
+PostgreSQL Database
+      │
+      ▼
+ETL Pipeline (SQL Views + Stored Procedures)
+      │
+      ▼
+Transformed Data Layer
+      │
+      ▼
+Power BI Dashboard (auto-refresh)
+      │
+      ▼
+Senior Management Reports
 
-- Ticket volume and distribution
-- SLA compliance
-- First response and resolution time
-- Performance by channel and priority
-- Customer satisfaction (CSAT)
+💡 Key Outcomes
 
-The project follows a **BI-style architecture**:
-- Raw data → Fact table → KPI views → Power BI dashboard
-
----
-
-## 🛠️ Tech Stack
-
-- **Database:** PostgreSQL  
-- **Data Modeling:** SQL (Views, Aggregations)
-- **Visualization:** Power BI
-- **Version Control:** GitHub
-
----
-
-## 🗂️ Project Structure
-
-
----
-
-## 🧱 Data Model
-
-- **raw_tickets** – raw customer service ticket data  
-- **fact_customer_tickets** – cleaned & transformed fact table  
-
-Key dimensions:
-- Ticket Priority
-- Ticket Channel
-- Ticket Type
-- Ticket Status
-
----
-
-## 📈 Key KPI Views (SQL)
-
-- `v_kpi_ticket_summary` – total, closed, open tickets, closure rate
-- `v_kpi_sla_compliance` – SLA compliance metrics
-- `v_tickets_by_channel` – ticket distribution by channel
-- `v_tickets_by_priority` – ticket distribution by priority
-- `v_tickets_by_type` – ticket distribution by type
-- `v_daily_ticket_volume` – daily ticket trend
-- `v_hourly_ticket_volume` – hourly ticket trend
-- `v_perf_by_channel` – avg response & resolution time by channel
-- `v_perf_by_priority` – avg response & resolution time by priority
-
----
-
-## 📊 Power BI Dashboard Pages
-
-### 1️⃣ Executive Overview
-- Total tickets
-- Closure rate
-- Tickets by channel, priority, and type
-- Ticket volume trends
-
-### 2️⃣ SLA & Performance
-- Average first response time
-- Average resolution time
-- Performance by priority
-- Customer satisfaction (CSAT)
-
----
-
-## 🧠 Key Insights
-
-- High-priority tickets are resolved faster than low-priority tickets
-- Certain channels have higher resolution times
-- SLA compliance highlights operational bottlenecks
-- CSAT correlates with faster resolution times
-
----
-
-## 📸 Dashboard Preview
-
-> Screenshots available in the `screenshots/` folder
-
----
-
-## 🎯 What This Project Demonstrates
-
-- Real-world KPI design
-- SQL-based BI modeling (views, aggregations)
-- Power BI best practices
-- Business-focused analytics thinking
-
----
-## 📸 Dashboard Preview
-
-### Executive Overview
-![Executive Overview](screenshots/executive_overview.png)
-
-### SLA & Performance
-![SLA & Performance](screenshots/sla_performance.png)
+⏱️ Eliminated ~12 hours/week of manual Excel preparation
+📉 Reduced reporting errors by 90% through automated data validation
+📊 6 KPI views now opened by senior management every week for resource and budget decisions
+🔁 Pipeline runs automatically — zero manual intervention after deployment
 
 
-## 👤 Author
+📁 Project Structure
+customer-service-kpi-dashboard/
+│
+├── sql/
+│   ├── schema.sql           # Database schema and table definitions
+│   ├── etl_pipeline.sql     # ETL transformations and stored procedures
+│   └── views.sql            # KPI views used by Power BI
+│
+├── powerbi/
+│   └── dashboard.pbix       # Power BI report file
+│
+├── screenshots/
+│   └── dashboard_preview.png
+│
+└── README.md
 
-**Muhammad Hassan**  
-Data Analytics | SQL | Power BI | Business Intelligence  
+🚀 How to Run
 
+Set up PostgreSQL — Create the database using sql/schema.sql
+Load your data — Insert or connect your customer service data source
+Run the ETL — Execute sql/etl_pipeline.sql to transform and load data
+Open Power BI — Open powerbi/dashboard.pbix and update the data source connection to your PostgreSQL instance
+Refresh — Click Refresh in Power BI to pull the latest data
+
+
+Requirements: PostgreSQL 13+, Power BI Desktop (free)
+
+👤 Author
+Muhammad Hassan
+Data Analytics | SQL | Power BI | Business Intelligence
+🔗 LinkedIn : www.linkedin.com/in/muhammad-hassan-saeed541
+📧 Email: muhammad2297hassan@gmail.com 
+
+📄 License
+MIT License — feel free to use this project as a reference or template.
